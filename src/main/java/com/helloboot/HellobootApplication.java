@@ -17,26 +17,30 @@ public class HellobootApplication {
 
     public static void main(String[] args) {
         ServletWebServerFactory serverFactory = new TomcatServletWebServerFactory();
-        WebServer webServer = serverFactory.getWebServer(servletContext ->
-                servletContext.addServlet("helloController", new HttpServlet() {
-                    @Override
-                    protected void service(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-                        // 인증, 보안, 다국어..
-                        if (req.getRequestURI().equals("/hello")
-                                && req.getMethod().equals(HttpMethod.GET.name())) {
-                            String name = req.getParameter("name");
-                            resp.setStatus(HttpStatus.OK.value());
-                            resp.setHeader(HttpHeaders.CONTENT_TYPE, MediaType.TEXT_PLAIN_VALUE);
-                            resp.getWriter().println("Hello " + name);
-                            resp.getWriter().println("Nice to meet you");
-                        } else if (req.getRequestURI().equals("users")) {
-                            //
-                        } else {
-                            resp.setStatus(HttpStatus.NOT_FOUND.value());
+        WebServer webServer = serverFactory.getWebServer(servletContext -> {
+                    HelloController helloController = new HelloController();
+                    servletContext.addServlet("helloController", new HttpServlet() {
+                        @Override
+                        protected void service(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+                            // 인증, 보안, 다국어..
+                            if (req.getRequestURI().equals("/hello")
+                                    && req.getMethod().equals(HttpMethod.GET.name())) {
+                                String name = req.getParameter("name");
+                                String ret = helloController.hello(name);
+
+                                resp.setStatus(HttpStatus.OK.value());
+                                resp.setHeader(HttpHeaders.CONTENT_TYPE, MediaType.TEXT_PLAIN_VALUE);
+                                resp.getWriter().println(ret);
+                            } else if (req.getRequestURI().equals("users")) {
+                                //
+                            } else {
+                                resp.setStatus(HttpStatus.NOT_FOUND.value());
+                            }
                         }
-                    }
-                }).addMapping("/*")
+                    }).addMapping("/*");
+                }
         );
+
         webServer.start();
     }
 
