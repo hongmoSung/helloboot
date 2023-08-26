@@ -35,7 +35,7 @@ public class HellobootApplication {
                             resp.setStatus(HttpStatus.NOT_FOUND.value());
                         }
                     }
-                }).addMapping("/hello")
+                }).addMapping("/*")
         );
         webServer.start();
     }
