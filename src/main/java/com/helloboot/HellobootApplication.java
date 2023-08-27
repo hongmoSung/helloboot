@@ -20,6 +20,7 @@ public class HellobootApplication {
         // 스프링 컨테이너
         GenericApplicationContext applicationContext = new GenericApplicationContext();
         applicationContext.registerBean(HelloController.class);
+        applicationContext.registerBean(SimpleHelloService.class);
         applicationContext.refresh();
 
         ServletWebServerFactory serverFactory = new TomcatServletWebServerFactory();
