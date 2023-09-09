@@ -2,6 +2,7 @@ package com.config.autoconfig;
 
 import com.config.MyAutoConfiguration;
 import com.config.MyConditional;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory;
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
@@ -11,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 public class JettyWebServerConfig {
 
     @Bean("jettyWebServerFactory")
+    @ConditionalOnMissingBean
     public ServletWebServerFactory webServerFactory() {
         return new JettyServletWebServerFactory();
     }

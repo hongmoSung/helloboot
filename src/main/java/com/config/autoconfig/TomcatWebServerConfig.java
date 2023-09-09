@@ -2,6 +2,7 @@ package com.config.autoconfig;
 
 import com.config.MyAutoConfiguration;
 import com.config.MyConditional;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
@@ -11,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 public class TomcatWebServerConfig {
 
     @Bean("tomcatWebServerFactory")
+    @ConditionalOnMissingBean
     public ServletWebServerFactory webServerFactory() {
         return new TomcatServletWebServerFactory();
     }
