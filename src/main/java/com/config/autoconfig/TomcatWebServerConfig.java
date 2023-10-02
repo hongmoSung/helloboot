@@ -12,15 +12,12 @@ import org.springframework.context.annotation.Bean;
 @MyConditional("org.apache.catalina.startup.Tomcat")
 public class TomcatWebServerConfig {
 
-    @Value("${contextPath}")
-    private String contextPath;
-
     @Bean("tomcatWebServerFactory")
     @ConditionalOnMissingBean
-    public ServletWebServerFactory webServerFactory() {
+    public ServletWebServerFactory webServerFactory(ServerProperties properties) {
         TomcatServletWebServerFactory factory = new TomcatServletWebServerFactory();
-        System.out.println("contextPath = " + contextPath);
-        factory.setContextPath(contextPath);
+        factory.setContextPath(properties.getContextPath());
+        factory.setPort(properties.getPort());
         return factory;
     }
 

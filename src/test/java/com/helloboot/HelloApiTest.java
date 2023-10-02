@@ -14,7 +14,7 @@ public class HelloApiTest {
     @Test
     void helloApi() {
         TestRestTemplate rest = new TestRestTemplate();
-        String url = "http://localhost:8080/hello?name={name}";
+        String url = "http://localhost:9090/app/hello?name={name}";
 
         ResponseEntity<String> res = rest.getForEntity(url, String.class, "Spring");
 
@@ -29,7 +29,7 @@ public class HelloApiTest {
     @Test
     void failHelloApi() {
         TestRestTemplate rest = new TestRestTemplate();
-        String url = "http://localhost:8080/hello?name=";
+        String url = "http://localhost:9090/app/hello?name=";
 
         ResponseEntity<String> res = rest.getForEntity(url, String.class);
         // status code 200
