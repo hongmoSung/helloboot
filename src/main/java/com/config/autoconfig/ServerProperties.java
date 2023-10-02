@@ -1,5 +1,8 @@
 package com.config.autoconfig;
 
+import com.config.MyConfigurationProperties;
+
+@MyConfigurationProperties(prefix = "server")
 public class ServerProperties {
 
     private String contextPath;

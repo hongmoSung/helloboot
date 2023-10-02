@@ -1,5 +1,6 @@
 my:
   name: applicationVariable
 
-contextPath: /app
-port: 9090
+server:
+  port: 9090
+  contextPath: "/app"
