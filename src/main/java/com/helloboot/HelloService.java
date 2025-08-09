@@ -1,10 +1,6 @@
 package com.helloboot;
 
-import java.util.Objects;
+public interface HelloService {
 
-public class HelloService {
-
-    public String sayHello(String name) {
-        return "Hello " + Objects.requireNonNull(name);
-    }
+    String sayHello(String name);
 }
