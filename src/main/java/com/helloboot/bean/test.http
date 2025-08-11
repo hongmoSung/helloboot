@@ -1,0 +1,25 @@
+### 사용자 테마 설정
+# "dark" 테마로 설정을 요청합니다.
+POST http://localhost:8080/user/theme
+Content-Type: application/x-www-form-urlencoded
+
+theme=dark
+
+### 즐겨찾기 항목 추가
+# "latte"를 즐겨찾기에 추가합니다.
+POST http://localhost:8080/user/favorites
+Content-Type: application/x-www-form-urlencoded
+
+item=latte
+
+### 즐겨찾기 항목 추가 2
+# "cookie"를 즐겨찾기에 추가합니다.
+POST http://localhost:8080/user/favorites
+Content-Type: application/x-www-form-urlencoded
+
+item=cookie1
+
+### 현재 사용자 설정 조회
+# 설정된 테마와 즐겨찾기 목록을 확인합니다.
+GET http://localhost:8080/user/preferences
+Accept: application/json
